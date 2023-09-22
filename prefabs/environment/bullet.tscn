@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnvfqg4626vm6"]
+
+[ext_resource type="Script" path="res://scripts/environment/Bullet.cs" id="1_th7fv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8vind"]
+size = Vector2(26, 6)
+
+[node name="bullet" type="Area2D"]
+script = ExtResource("1_th7fv")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+scale = Vector2(1.64, 1)
+color = Color(0.807843, 0.815686, 0.556863, 1)
+polygon = PackedVector2Array(-8, -4, 8, -4, 8, 2, -8, 2)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_8vind")
+
+[node name="KillTimer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true

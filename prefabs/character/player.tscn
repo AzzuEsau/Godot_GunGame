@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://doquc4x1u8g2f"]
+
+[ext_resource type="Script" path="res://scripts/character/Player.cs" id="1_kbf5h"]
+[ext_resource type="Texture2D" uid="uid://b3u4r6kwl08s1" path="res://media/icons/icon.svg" id="1_rdqbd"]
+[ext_resource type="Script" path="res://scripts/ui/HealtBar.cs" id="3_3mhdw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tbotj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nvfiy"]
+size = Vector2(130, 126)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m2rve"]
+bg_color = Color(1, 0, 0, 1)
+
+[node name="player" type="CharacterBody2D"]
+script = ExtResource("1_kbf5h")
+metadata/_edit_group_ = true
+
+[node name="Icon" type="Sprite2D" parent="."]
+texture = ExtResource("1_rdqbd")
+
+[node name="Collision1" type="CollisionShape2D" parent="."]
+scale = Vector2(5.93866, 5.97097)
+shape = SubResource("RectangleShape2D_tbotj")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.5, 0.5)
+limit_smoothed = true
+editor_draw_drag_margin = true
+
+[node name="EnemyCollilder" type="Area2D" parent="."]
+scale = Vector2(0.996882, 1.04099)
+
+[node name="EnemyCollision" type="CollisionShape2D" parent="EnemyCollilder"]
+shape = SubResource("RectangleShape2D_nvfiy")
+
+[node name="CollisionTimer" type="Timer" parent="EnemyCollilder"]
+one_shot = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="BoxContainer" type="BoxContainer" parent="CanvasLayer"]
+offset_left = 30.0
+offset_top = 40.0
+offset_right = 461.0
+offset_bottom = 98.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HpBar" type="ProgressBar" parent="CanvasLayer/BoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/fill = SubResource("StyleBoxFlat_m2rve")
+value = 50.0
+script = ExtResource("3_3mhdw")

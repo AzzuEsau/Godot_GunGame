@@ -1,0 +1,92 @@
+[gd_scene load_steps=5 format=3 uid="uid://catomwkr8okmb"]
+
+[ext_resource type="Texture2D" uid="uid://b3u4r6kwl08s1" path="res://media/icons/icon.svg" id="1_4xejj"]
+[ext_resource type="Script" path="res://scripts/Game.cs" id="1_yx7on"]
+[ext_resource type="PackedScene" uid="uid://doquc4x1u8g2f" path="res://prefabs/character/player.tscn" id="2_iwku6"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ks8u5"]
+font_size = 150
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[node name="game" type="Node"]
+script = ExtResource("1_yx7on")
+
+[node name="Icon" type="Sprite2D" parent="."]
+modulate = Color(0, 0.713726, 0.301961, 1)
+texture_filter = 1
+position = Vector2(607.1, 356.6)
+scale = Vector2(20.2416, 11.13)
+texture = ExtResource("1_4xejj")
+
+[node name="player" parent="." groups=["Player"] instance=ExtResource("2_iwku6")]
+scale = Vector2(1.00397, 1)
+
+[node name="EnemySpawnTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
+offset_left = 33.0
+offset_top = 71.0
+offset_right = 516.0
+offset_bottom = 111.0
+
+[node name="Label" type="Label" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+text = "ENEMIGOS A MATAR: "
+
+[node name="enemiesLabel" type="Label" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+text = "99"
+
+[node name="CanvasFinish" type="CanvasLayer" parent="."]
+process_mode = 3
+
+[node name="Win" type="Label" parent="CanvasFinish"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -359.5
+offset_top = -128.0
+offset_right = 359.5
+offset_bottom = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Ganaste!!!"
+label_settings = SubResource("LabelSettings_ks8u5")
+
+[node name="Restart" type="Button" parent="CanvasFinish/Win"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -212.0
+offset_top = 82.0
+offset_right = 212.0
+offset_bottom = 181.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "Volver a Iniciar"
+
+[node name="Exit" type="Button" parent="CanvasFinish/Win"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -212.0
+offset_top = 208.0
+offset_right = 212.0
+offset_bottom = 307.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+text = "Ya me voy"
